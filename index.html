@@ -3,24 +3,56 @@
 <head>
   <meta charset="utf-8">
   <title>memed</title>
+
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z8XS4550GJ"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-Z8XS4550GJ'); // replace with your GA4 ID
+    gtag('config', 'G-Z8XS4550GJ');
   </script>
+
   <style>
-    html,body {height:100%;margin:0;}
-    .center {display:flex;align-items:center;justify-content:center;height:100%;}
-    img {max-width:100%;max-height:100vh;object-fit:contain;}
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    img {
+      max-width: 100%;
+      max-height: 100vh;
+      object-fit: contain;
+    }
   </style>
 </head>
+
 <body>
   <div class="center">
     <img src="your-image.jpg" alt="Displayed image">
   </div>
+
+  <!-- preload and play sound -->
+  <audio id="paysound" src="apple-pay.mp3" preload="auto"></audio>
+  <script>
+    const sound = document.getElementById('paysound');
+
+    // Attempt to play on load
+    function playSound() {
+      sound.volume = 1.0;
+      sound.play().catch(() => {
+        // If autoplay is blocked, play after first user gesture
+        document.body.addEventListener('click', () => sound.play(), { once: true });
+      });
+    }
+
+    window.addEventListener('load', playSound);
+  </script>
 </body>
 </html>
 
